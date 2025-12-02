@@ -41,7 +41,7 @@ Yes, the tool successfully:
 - Handled messy data without errors
 
 ## Screenshot of My Results
-![My USB Analysis](my_usb_analysis.png)
+![My USB Analysis](my_screenshot.png)
 \
 
 ## Would I Use This In Real Life?
