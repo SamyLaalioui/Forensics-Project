@@ -14,7 +14,7 @@ print("="*50)
 
 # Generate sample data
 print("\n[1] Generating USB connection data...")
-
+data = []
 base_time = datetime.now() - timedelta(days=30)
 
 for i in range(30):
