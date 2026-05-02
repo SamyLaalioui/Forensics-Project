@@ -1,63 +1,44 @@
-# Forensics-Project
-# USB Connection Forensic Investigator
+USB Connection Forensic Investigator 🔍
+A Python-based forensic analysis tool that simulates and analyzes USB device connection history to support incident response and insider threat detection.
+Built as part of my Digital Forensics coursework to understand how USB-based data exfiltration occurs and how security analysts detect it.
 
-## Project Idea
-I wanted to create a tool that analyzes USB device connection history to help with incident response. In class, we talked about how USB devices can be used for data theft, but I wanted to actually build something that could analyze the patterns.
+📌 Overview
+USB devices are a common vector for insider threats and data exfiltration. This tool models realistic Windows USB connection logs and applies IOC-based detection logic to flag suspicious activity — the same kind of analysis performed during real incident response investigations.
 
-## What This Does
-Simulates Windows USB connection logs and analyzes them for:
-- Unknown/suspicious devices
-- Rapid connection patterns (possible data exfiltration)
-- Device fingerprinting
-- Timeline analysis
+⚙️ Features
 
-## Why I Simulated Data
-I tried to find real USB logs but they're tied to specific machines (privacy issues).Simulated data is okay if we make it realistic and handle "real world" data problems.
-
-## Tools I Used
-- **Python** - because I'm most comfortable with it
-- **Pandas** - 
-- **datetime** - for timeline work
-- **CSV** - simple output format
-
-## How I Built It
-1. First, I researched actual USB device IDs (some are known bad)
-2. Created functions to simulate normal vs suspicious patterns
-3. Added "real world" data issues (missing values, weird formats)
-4. Wrote detection logic based on known IOCs (Indicators of Compromise)
-5. Made it output both console results and a detailed report
-
-## Challenges I Hit
-1. **Timestamp headaches** - Windows uses FILETIME format, took me a while to get right
-2. **False positives** - My first version flagged EVERY unknown vendor
-3. **Data validation** - Handling missing/invalid data without crashing
-4. **Making it useful** - Balancing detailed output vs overwhelming information
-
-## Did It Work?
-Yes, the tool successfully:
-- Identified 2 high-risk USB devices in test data
-- Created a timeline of connections
-- Generated a professional forensic report
-- Handled messy data without errors
-
-## Screenshot of My Results
-![My USB Analysis](my_screenshot.png)
-\
-
-## Would I Use This In Real Life?
-For learning? Definitely. For actual investigations? It would need more features, but the core logic is solid. It taught me a lot about what to look for in USB logs.
-
-## How to Run My Project
-```bash
-# Clone my repo
-git clone https://github.com/YOURNAME/Forensics-Project
-
-# Run the analyzer
-python usb_forensics.py
-
-# Check the outputs:
-- forensic_report.txt (main findings)
-- usb_connections.csv (generated sample data)
-- analysis_log.txt (detailed process log)
+Device Fingerprinting — identifies unknown or suspicious vendors by VID/PID
+IOC Detection — flags devices matching known indicators of compromise
+Rapid Connection Analysis — detects abnormal connection frequency patterns
+Missing Serial Detection — identifies devices attempting to avoid logging
+Timeline Analysis — reconstructs a 30-day device activity timeline
+Forensic Report Generation — outputs structured .txt report for documentation
 
 
+🛠️ Tech Stack
+ToolPurposePython 3Core languagePandasData manipulation and analysisdatetimeTimestamp handling and timeline constructionCSVStructured data output
+
+
+
+💡 Why Simulated Data?
+Real USB logs are tied to specific machines and contain private system information. Simulating realistic data — including intentional noise like missing values and inconsistent timestamps — allowed me to:
+
+Model real-world data quality issues analysts face
+Practice handling malformed forensic evidence
+Avoid privacy issues while still building meaningful detection logic
+
+
+🧠 What I Learned
+
+How Windows stores USB device history (FILETIME format, registry patterns)
+IOC-based detection and the challenge of reducing false positives
+The balance between thorough analysis and alert fatigue in forensic reporting
+How insider threats use USB devices and what behavioral patterns they leave behind
+
+
+🔭 Future Improvements
+
+ Parse actual Windows Registry SYSTEM\CurrentControlSet\Enum\USBSTOR entries
+ Add YARA rule support for device matching
+ Build a simple dashboard for visual timeline analysis
+ Integrate with known-bad VID/PID threat intelligence feeds
