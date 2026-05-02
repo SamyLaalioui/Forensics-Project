@@ -1,4 +1,5 @@
 USB Connection Forensic Investigator 🔍
+
 A Python-based forensic analysis tool that simulates and analyzes USB device connection history to support incident response and insider threat detection.
 Built as part of my Digital Forensics coursework to understand how USB-based data exfiltration occurs and how security analysts detect it.
 
