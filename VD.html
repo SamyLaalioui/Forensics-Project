@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #fff0f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            padding: 20px;
+        }
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 30px;
+            border: 4px solid #ff69b4;
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(255,105,180,0.2);
+        }
+        h1 { color: #ff1493; font-size: 2.5rem; margin-bottom: 5px; }
+        .sub { color: #ff69b4; font-size: 1.4rem; margin-bottom: 20px; }
+        .kitty {
+            width: 100px; height: 100px;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiPjxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjQ1IiBmaWxsPSIjRkZGNkZGIi8+PGNpcmNsZSBjeD0iMzUiIGN5PSI0MCIgcj0iNiIgZmlsbD0iIzMzMyIvPjxjaXJjbGUgY3g9IjY1IiBjeT0iNDAiIHI9IjYiIGZpbGw9IiMzMzMiLz48Y2lyY2xlIGN4PSIzNSIgY3k9IjQwIiByPSIyIiBmaWxsPSJ3aGl0ZSIvPjxjaXJjbGUgY3g9IjY1IiBjeT0iNDAiIHI9IjIiIGZpbGw9IndoaXRlIi8+PHBhdGggZD0iTTQwIDcwQzQ1IDgwIDU1IDgwIDYwIDcwIiBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==');
+            background-size: contain;
+            margin: 15px auto;
+        }
+        .strawberry {
+            width: 70px; height: 85px;
+            background: #ff4d6d;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            margin: 15px auto;
+            position: relative;
+        }
+        .strawberry:before {
+            content: ''; position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            width: 18px; height: 18px; background: #90ee90; clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+        .seed { position: absolute; width: 4px; height: 4px; background: #ffb6c1; border-radius: 50%; }
+        h2 { font-size: 2rem; color: #333; margin: 20px 0; font-weight: 500; }
+        .buttons { display: flex; gap: 25px; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            padding: 12px 35px; font-size: 1.5rem; border: none; border-radius: 50px;
+            cursor: pointer; font-weight: 500; transition: all 0.3s; min-width: 120px;
+        }
+        .yes { background: #ff4d6d; color: white; }
+        .no { background: #ffb6c1; color: #333; }
+        .msg { margin-top: 25px; font-size: 1.8rem; color: #ff1493; min-height: 60px; }
+        .counter { margin-top: 15px; color: #888; }
+        .heart { position: fixed; color: #ff4d6d; font-size: 24px; animation: float 4s linear forwards; pointer-events: none; }
+        @keyframes float { 
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Beanie</h1>
+        <div class="sub">🍓✨</div>
+        <div class="kitty"></div>
+        <div class="strawberry">
+            <div class="seed" style="top:30%; left:20%"></div>
+            <div class="seed" style="top:45%; left:55%"></div>
+            <div class="seed" style="top:60%; left:30%"></div>
+            <div class="seed" style="top:50%; left:70%"></div>
+        </div>
+        <h2>Be my Valentine?</h2>
+        <div class="buttons">
+            <button class="btn yes" id="yes">Yes</button>
+            <button class="btn no" id="no">No</button>
+        </div>
+        <div class="msg" id="msg"></div>
+        <div class="counter" id="counter"></div>
+    </div>
+
+    <script>
+        let noClicks = 0;
+        const yes = document.getElementById('yes');
+        const no = document.getElementById('no');
+        const msg = document.getElementById('msg');
+        const counter = document.getElementById('counter');
+
+        function makeHearts(n) {
+            for(let i=0; i<n; i++) {
+                setTimeout(() => {
+                    let h = document.createElement('div');
+                    h.className = 'heart';
+                    h.innerHTML = Math.random() > 0.5 ? '❤️' : '💖';
+                    h.style.left = Math.random() * 100 + 'vw';
+                    h.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                    h.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    document.body.appendChild(h);
+                    setTimeout(() => h.remove(), 4000);
+                }, i * 80);
+            }
+        }
+
+        no.addEventListener('click', () => {
+            noClicks++;
+            counter.textContent = '🙈 ' + noClicks;
+            
+            yes.style.transform = `scale(${1 + noClicks * 0.15})`;
+            
+            no.style.position = 'fixed';
+            no.style.left = Math.random() * (window.innerWidth - 150) + 'px';
+            no.style.top = Math.random() * (window.innerHeight - 80) + 'px';
+            
+            if(noClicks > 2) {
+                no.style.position = 'fixed';
+                no.addEventListener('mouseenter', () => {
+                    no.style.left = Math.random() * (window.innerWidth - 150) + 'px';
+                    no.style.top = Math.random() * (window.innerHeight - 80) + 'px';
+                }, {once: true});
+            }
+        });
+
+        yes.addEventListener('click', () => {
+            makeHearts(25);
+            msg.innerHTML = 'Yessss<br>Te Amo 💕';
+            document.querySelector('h2').style.display = 'none';
+            document.querySelector('.buttons').style.display = 'none';
+            counter.style.display = 'none';
+            no.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+C:\Forensics-Project> python usb_forensics.py
+==================================================
+USB FORENSIC ANALYZER - STUDENT PROJECT
+==================================================
+
+[1] Generating USB connection data...
+Created 30 records in usb_data.csv
+
+[2] Analyzing for suspicious patterns...
+
+[3] RESULTS:
+Total devices analyzed: 30
+Suspicious devices found: 3
+Devices missing serials: 3
+
+SUSPICIOUS DEVICES:
+  - USB\VID_AAAA&PID_BBBB (Unknown)
+  - USB\VID_AAAA&PID_BBBB (Unknown)
+  - USB\VID_AAAA&PID_BBBB (Unknown)
+
+[4] Report saved to forensic_report.txt
+
+✅ Analysis complete!
