@@ -1,7 +1,7 @@
 # USB Connection Forensic Analyzer
 
 **Case:** IR-2024-0047 | **Operation:** Silent Drive  
-**Author:** Samy Laalioui | NWMSU Cyber Defense Lab
+**Author:** Samy Laalioui | Cyber Defense Lab
 
 A Python-based forensic analysis tool that simulates and analyzes USB device connection history to support incident response and insider threat investigations. Built to demonstrate IOC-based detection logic used by security analysts during real IR engagements.
 
